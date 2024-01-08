@@ -27,12 +27,12 @@ class Hero {
 }
 
 class Guerrier extends Hero{
-    constructor(name,combatPosition,attack,hp,ragePoint){
+    constructor(name,combatPosition,attack,hp){
         this.name = name
         this.combatPosition = combatPosition
         this.attack = attack
         this.hp = hp
-        this.ragePoint = ragePoint
+        this.ragePoint = 0
 
     }
 
@@ -129,7 +129,7 @@ while(attackHero < 0 && attackHero >119){
 
 }
 
-let warrior = new Guerrier()
+let warrior = new Guerrier(nomHero,combatPositionHero,hpHero,attackHero)
 
 
 
