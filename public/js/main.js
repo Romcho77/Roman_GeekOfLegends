@@ -43,6 +43,7 @@ class Guerrier extends Hero{
             this.ragePoint = 0
             return this.attack
         }else{
+            this.ragePoint +=1
             this.attack = 0
             this.combatPosition = "defense"
             return 0
@@ -93,6 +94,6 @@ class Archer extends Hero{
     }
 
     attack(){
-        
+
     }
 }
