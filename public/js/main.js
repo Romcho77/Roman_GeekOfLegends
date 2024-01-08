@@ -62,11 +62,12 @@ class Mage extends Hero{
     }
 
     manaPossesion(){
-        if (manaPoint < 2) {
+        if (this.manaPoint < 2) {
             this.combatPosition = "defense"
             this.manaPoint = 7
         }else{
             this.combatPosition = "attack"
+            this.manaPoint -= 2
         }
     }
 }
@@ -79,5 +80,19 @@ class Archer extends Hero{
         this.hp = hp
         this.arrows = arrows
     }
-    
+
+
+    arrowPossesion(){
+        if(this.arrows < 2){
+            this.combatPosition = "defense"
+            this.arrows = 6
+        }else{
+            this.combatPosition = "attack"
+            this.arrows -= 2
+        }
+    }
+
+    attack(){
+        
+    }
 }
