@@ -119,6 +119,17 @@ while (combatPositionHero != "attack" || combatPositionHero != "defense") {
 }
 
 let hpHero = +prompt("Entrez les points de vie de votre hero numero -->", i)
+while(hpHero < 1 && hpHero >149){
+    hpHero = +prompt("Re entrez le nombre de HP (Doit etre plus grand que 1 et plus petit que 149)")
+
+}
+let attackHero = +prompt("Entrez les points de attaque de votre hero numero -->", i)
+while(attackHero < 0 && attackHero >119){
+    attackHero = +prompt("Re entrez le nombre de HP (Doit etre plus grand ou egal que 0 et plus petit que 119)")
+
+}
 
 let warrior = new Guerrier()
+
+
 
