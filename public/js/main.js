@@ -65,8 +65,19 @@ class Mage extends Hero{
         if (manaPoint < 2) {
             this.combatPosition = "defense"
             this.manaPoint = 7
+        }else{
+            this.combatPosition = "attack"
         }
     }
+}
 
-
+class Archer extends Hero{
+    constructor(name,combatPosition,attack,hp,arrows){
+        this.name = name
+        this.combatPosition = combatPosition
+        this.attack = attack
+        this.hp = hp
+        this.arrows = arrows
+    }
+    
 }
