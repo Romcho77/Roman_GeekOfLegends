@@ -97,3 +97,28 @@ class Archer extends Hero{
 
     }
 }
+
+let grosFdp = new Boss("Grolard",20,700)
+let Gouvernement = new Boss("Union Europeen", 55, 300)
+let American = new Boss("Uncle Sam",100,1000)
+
+console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+console.log("$$$$$$$$$ Create Your Heroes $$$$$$$$$$$$$");
+console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+// 150 hp for 3 heroes
+let hpTotal = 150
+// 120 attackPoints for 3 heroes
+let attackPoints = 120
+
+
+let nomHero = prompt("Entrez un nom du premier personnage")
+let combatPositionHero = prompt("Entrez son posture de combat")
+while (combatPositionHero != "attack" || combatPositionHero != "defense") {
+    combatPositionHero = prompt("Re entrez la posture de combat... ---> soit `attack` soit `defense`")
+}
+
+let hpHero = +prompt("Entrez les points de vie de votre hero numero -->", i)
+
+let warrior = new Guerrier()
+
