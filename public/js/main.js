@@ -36,5 +36,17 @@ class Guerrier extends Hero{
 
     }
 
-    
+    combatStatement(){
+        if (this.ragePoint == 4) {
+            this.combatPosition = "attack"
+            this.attack = this.attack + this.attack*0.25
+            this.ragePoint = 0
+            return this.attack
+        }else{
+            this.attack = 0
+            this.combatPosition = "defense"
+            return 0
+        }
+    }
+
 }
