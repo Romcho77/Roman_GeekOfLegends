@@ -50,3 +50,23 @@ class Guerrier extends Hero{
     }
 
 }
+
+class Mage extends Hero{
+    constructor(name,combatPosition,attack,hp,mp){
+        this.name = name
+        this.combatPosition = combatPosition
+        this.attack = attack
+        this.hp = hp
+        this.manaPoint = mp
+        
+    }
+
+    manaPossesion(){
+        if (manaPoint < 2) {
+            this.combatPosition = "defense"
+            this.manaPoint = 7
+        }
+    }
+
+
+}
