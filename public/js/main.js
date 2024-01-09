@@ -33,7 +33,7 @@ class Guerrier extends Hero{
         // this.combatPosition = combatPosition
         // this.attack = attack
         // this.hp = hp
-            this.ragePoint = 0
+        this.ragePoint = 0
 
     }
 
@@ -77,10 +77,11 @@ class Mage extends Hero{
 
 class Archer extends Hero{
     constructor(name,combatPosition,attack,hp){
-        this.name = name
-        this.combatPosition = combatPosition
-        this.attack = attack
-        this.hp = hp
+        super(name,combatPosition,attack,hp);
+        // this.name = name
+        // this.combatPosition = combatPosition
+        // this.attack = attack
+        // this.hp = hp
         this.arrows = 6
     }
 
@@ -140,7 +141,9 @@ while(attackWarrior < 0 && attackWarrior > attackPoints - 1){
 
 }
 attackPoints -= attackWarrior 
-console.log("il vous reste -->",);
+
+
+console.log("il vous reste --> ", attackPoints, " points de attack");
 let warrior = new Guerrier(nomWarrior,combatPositionWarrior,attackWarrior,hpWarrior)
 alert(`"votre guerrier ---> " ${warrior.name}  ${warrior.combatPosition}  ${warrior.attack}  ${warrior.hp} `)
 
@@ -164,10 +167,37 @@ while(attackArcher < 0 && attackArcher >119){
     attackArcher = +prompt("Re entrez le nombre de HP (Doit etre plus grand ou egal que 0 et plus petit que 119)")
 
 }
+attackPoints -= attackArcher
 
 let archer = new Archer(nomArcher,combatPositionArcher,hpArcher,attackArcher)
 
-alert(`votre archier --->  ${archer.name} ${archer.combatPosition} ${hpArcher} ${attackArcher}`)
+alert(`votre archier --->  ${nomArcher} ${combatPositionArcher} ${hpArcher} ${attackArcher}`)
+
+// input for Mage
+let nomMage = prompt("Entrez un nom du Mage")
+let combatPositionMage = prompt("Entrez son posture de combat")
+while (combatPositionMage != "attack" && combatPositionMage != "defense") {
+    combatPositionMage = prompt("Re entrez la posture de combat... ---> soit `attack` soit `defense`")
+}
+
+let hpMage = +prompt("Entrez les points de vie de Mage numero -->")
+while(hpMage < 1 && hpMage > hpTotal ){
+    hpMage = +prompt("Re entrez le nombre de HP (Doit etre plus grand que 1 et plus petit que 149)")
+
+}
+hpTotal -=  hpMage
+
+let attackMage = +prompt("Entrez les points de attaque de Mage numero -->")
+while(attackMage < 0 && attackMage >attackPoints){
+    attackMage = +prompt("Re entrez le nombre de HP (Doit etre plus grand ou egal que 0 et plus petit que 119)")
+
+}
+attackPoints -= attackMage
+
+let mage = new Mage(nomMage,combatPositionMage,hpMage,attackMage)
+alert(`HP TOTAL ----> ${hpTotal}`)
+alert(`attackPoints ----> ${attackPoints}`)
+alert(`votre Mage --->  ${nomMage} ${combatPositionMage} ${hpMage} ${attackMage}`)
 
 
 
