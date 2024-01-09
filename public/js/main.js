@@ -35,31 +35,38 @@ class Guerrier extends Hero{
         this.ragePoint = 0
 
     }
-    attack(){
-        if(this.combatPosition == "attack"){
+    // attack(){
+    //     if(this.combatPosition == "attack"){
 
-            return (this.attack + this.attack*0.2) 
+    //         return (this.attack + this.attack*0.2) 
 
-        }else if(this.combatPosition == "defense"){
-            return 0
-        }else{
-            console.log("Je ne comprends pas dans quel posutre de combat ton heros est?");
-            return -99
-        }
-    }
+    //     }else if(this.combatPosition == "defense"){
+    //         return 0
+    //     }else{
+    //         console.log("Je ne comprends pas dans quel posutre de combat ton heros est?");
+    //         return -99
+    //     }
+    // }
 
-    combatStatement(){
+    rage(boss){
+
         if (this.ragePoint == 4 ) {
             // this.combatPosition = "attack"
             // this.attack = this.attack + this.attack*0.25
+            let attackNormal = this.attack + this.attack * 0.2
+            boss.hp = boss.hp - ((attackNormal + attackNormal*0.25))
             this.ragePoint = 0
-            return this.attack + this.attack*0.25
+             
 
+        }else if (this.combatPosition == "attack"){
+            boss.hp-= this.attack + this.attack * 0.2
+
+            this.ragePoint+=1
         }else{
             this.ragePoint +=1
             // this.attack = 0
             // this.combatPosition = "defense"
-            return 0
+
         }
     }
 
@@ -106,7 +113,7 @@ class Archer extends Hero{
             this.arrows += 6
             
         }else if (this.arrows >= 2 && this.attack == "attack"){
-            
+
             boss.hp-= this.attack + this.attack * 0.2
             this.arrows -= 2
 
