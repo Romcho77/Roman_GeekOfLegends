@@ -224,18 +224,30 @@ let randomChoice = Math.floor(Math.random()* 3)
 let tabBoss = [grosFdp,Gouvernement,American]
 let randomBoss = tabBoss[randomChoice]
 
-while ( (warrior.hp <= 0 && archer.hp <= 0 && mage.hp <= 0) || randomBoss.hp <= 0){
+while ( (warrior.hp > 0 && archer.hp > 0 && mage.hp > 0) || randomBoss.hp > 0){
     //1. Le Guerrier attaque
-    warrior.attack()
+    warrior.rage(randomBoss)
     //2. Le Mage attaque
-    mage.attack()
+    mage.manaPossesion(randomBoss)
     //3. Le Archer attaque
-    archer.attack()
+    archer.arrowPossesion(randomBoss)
 
     //////////////? BOSSSSS ATTACK ///////////?
-    boss.attack()
+    
+    switch (Math.floor(Math.random()* 3)) {
+        case 0:
+            randomBoss.attackType(warrior)
+            break;
+        case 1:
+            randomBoss.attackType(mage)
+            break
+        case 2: 
+            randomBoss.attackType(archer)
+        default:
+            break;
+    }
 
 
     /// changer les posture de combats
-    prompt..
+    
 }
