@@ -33,7 +33,7 @@ class Guerrier extends Hero{
         // this.combatPosition = combatPosition
         // this.attack = attack
         // this.hp = hp
-        // this.ragePoint = 0
+            this.ragePoint = 0
 
     }
 
@@ -116,7 +116,7 @@ let hpTotal = 150
 let attackPoints = 120
 
 // for(let i = 0; i < 3; i++){
-    
+
 // }
 
 // Input for warrior
@@ -126,23 +126,24 @@ while (combatPositionWarrior != "attack" && combatPositionWarrior != "defense") 
     combatPositionWarrior = prompt("Re entrez la posture de combat... ---> soit `attack` soit `defense`")
 }
 
-let hpWarrior = +prompt("Entrez les points de vie de votre hero numero -->", i)
-while(hpWarrior < 1 && hpWarrior > hpTotal - 1){
+let hpWarrior = +prompt("Entrez les points de vie de votre hero numero -->")
+while(hpWarrior < 1 || hpWarrior >= hpTotal - 1){
     hpWarrior = +prompt("Re entrez le nombre de HP (Doit etre plus grand que 1 et plus petit que 149)")
 
 }
 hpTotal -= hpWarrior
 
 
-let attackWarrior = +prompt("Entrez les points de attaque de votre hero numero -->", i)
+let attackWarrior = +prompt("Entrez les points de attaque de votre hero numero -->")
 while(attackWarrior < 0 && attackWarrior > attackPoints - 1){
     attackWarrior = +prompt("Re entrez le nombre de HP (Doit etre plus grand ou egal que 0 et plus petit que 119)")
 
 }
 attackPoints -= attackWarrior 
 console.log("il vous reste -->",);
-let warrior = new Guerrier(nomWarrior,combatPositionWarrior,hpWarrior,attackWarrior)
-alert("votre guerrier ---> ",warrior.name,warrior.combatPosition,warrior.hp,warrior.attack)
+let warrior = new Guerrier(nomWarrior,combatPositionWarrior,attackWarrior,hpWarrior)
+alert(`"votre guerrier ---> " ${warrior.name}  ${warrior.combatPosition}  ${warrior.attack}  ${warrior.hp} `)
+
 
 // input for Archer
 let nomArcher = prompt("Entrez un nom du Archer")
@@ -151,14 +152,14 @@ while (combatPositionArcher != "attack" && combatPositionArcher != "defense") {
     combatPositionArcher = prompt("Re entrez la posture de combat... ---> soit `attack` soit `defense`")
 }
 
-let hpArcher = +prompt("Entrez les points de vie de Archer numero -->", i)
+let hpArcher = +prompt("Entrez les points de vie de Archer numero -->")
 while(hpArcher < 1 && hpArcher > hpTotal ){
     hpArcher = +prompt("Re entrez le nombre de HP (Doit etre plus grand que 1 et plus petit que 149)")
 
 }
 hpTotal -=  hpArcher
 
-let attackArcher = +prompt("Entrez les points de attaque de Archer numero -->", i)
+let attackArcher = +prompt("Entrez les points de attaque de Archer numero -->")
 while(attackArcher < 0 && attackArcher >119){
     attackArcher = +prompt("Re entrez le nombre de HP (Doit etre plus grand ou egal que 0 et plus petit que 119)")
 
@@ -166,7 +167,7 @@ while(attackArcher < 0 && attackArcher >119){
 
 let archer = new Archer(nomArcher,combatPositionArcher,hpArcher,attackArcher)
 
-alert("votre archier ---> ",archer.name,archer.combatPosition,hpArcher,attackArcher)
+alert(`votre archier --->  ${archer.name} ${archer.combatPosition} ${hpArcher} ${attackArcher}`)
 
 
 
