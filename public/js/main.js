@@ -223,18 +223,51 @@ alert(`votre Mage --->  ${nomMage} ${combatPositionMage} ${hpMage} ${attackMage}
 let randomChoice = Math.floor(Math.random()* 3)
 let tabBoss = [grosFdp,Gouvernement,American]
 let randomBoss = tabBoss[randomChoice]
+let heroTab = [warrior,mage,archer]
 
 while ( (warrior.hp > 0 && archer.hp > 0 && mage.hp > 0) || randomBoss.hp > 0){
+
+    //!__________________ DEBUT DU COMBAT_________________ //!
+
+    //? _______ Si heros est mort il n'attaque plus et il se fait retirer de heroTab
+    if(warrior.hp <= 0 && (heroTab.includes(Guerrier))){
+        heroTab.splice(0,1)
+        warrior.attack = 0
+        console.log("warrior enlever");
+        
+    }else{
+        //1. Le Guerrier attaque
+        warrior.rage(randomBoss)
+        console.log("warrior attaque");
+    }
+
+    if(archer.hp <= 0 && (heroTab.includes(Mage))){
+        heroTab.splice(2,1)
+        archer.attack = 0
+    }else{
+        archer.arrowPossesion(randomBoss)
+    }
+
+
+
+    if(mage.hp <= 0 && (heroTab.includes(Archer))){
+        heroTab.splice(1,1)
+        mage.attack = 0
+    }else{
+        mage.manaPossesion(randomBoss)
+    }
+    
+
     //1. Le Guerrier attaque
-    warrior.rage(randomBoss)
-    //2. Le Mage attaque
-    mage.manaPossesion(randomBoss)
-    //3. Le Archer attaque
-    archer.arrowPossesion(randomBoss)
+    // warrior.rage(randomBoss)
+    // //2. Le Mage attaque
+    // mage.manaPossesion(randomBoss)
+    // //3. Le Archer attaque
+    // archer.arrowPossesion(randomBoss)
 
     //////////////? BOSSSSS ATTACK ///////////?
     
-    switch (Math.floor(Math.random()* 3)) {
+    switch (Math.floor(Math.random()* heroTab.length)) {
         case 0:
             randomBoss.attackType(warrior)
             break;
@@ -247,7 +280,28 @@ while ( (warrior.hp > 0 && archer.hp > 0 && mage.hp > 0) || randomBoss.hp > 0){
             break;
     }
 
+    if(warrior.hp > 0 ){
+        combatPositionWarrior = prompt("Entrez posture de combat de warrior")
+        while (combatPositionWarrior != "attack" && combatPositionWarrior != "defense") {
+            combatPositionWarrior = prompt("Re entrez la posture de combat... ---> soit `attack` soit `defense`")
+        }
+    }
+    if(mage.hp > 0 ){
+        combatPositionMage = prompt("Entrez son posture de combat de mage")
+        while (combatPositionMage != "attack" && combatPositionMage != "defense") {
+            combatPositionMage = prompt("Re entrez la posture de combat... ---> soit `attack` soit `defense`")
+        }
+    }
+    if(archer.hp > 0 ){
+        combatPositionArcher = prompt("Entrez son posture de combat de mage")
+        while (combatPositionArcher != "attack" && combatPositionArcher != "defense") {
+            combatPositionArcher = prompt("Re entrez la posture de combat... ---> soit `attack` soit `defense`")
+        }
+    }
 
-    /// changer les posture de combats
     
+
+
+
+    ///fin de boucle
 }
