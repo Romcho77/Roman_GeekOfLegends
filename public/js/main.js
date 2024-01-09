@@ -38,7 +38,7 @@ class Guerrier extends Hero{
     attack(){
         if(this.combatPosition == "attack"){
 
-            return this.attack + this.attack*0.2
+            return (this.attack + this.attack*0.2) 
 
         }else if(this.combatPosition == "defense"){
             return 0
@@ -78,12 +78,13 @@ class Mage extends Hero{
 
     manaPossesion(boss){
         if (this.manaPoint > 1 && this.combatPosition == "attack") {
+
             boss.hp -= this.attack + this.attack * 0.2
             this.manaPoint = this.manaPoint - 2
 
         }else if (this.manaPoint < 2){
-            this.combatPosition = "attack"
-            this.manaPoint -= 2
+            
+            this.manaPoint += 7
         }
     }
 }
@@ -99,21 +100,20 @@ class Archer extends Hero{
     }
 
 
-    arrowPossesion(){
+    arrowPossesion(boss){
         if(this.arrows < 2){
-            this.combatPosition = "defense"
-            this.arrows = 6
-            return false
-        }else{
-            this.combatPosition = "attack"
+            
+            this.arrows += 6
+            
+        }else if (this.arrows >= 2 && this.attack == "attack"){
+            
+            boss.hp-= this.attack + this.attack * 0.2
             this.arrows -= 2
-            return true
+
         }
     }
 
-    attack(){
 
-    }
 }
 
 let fatJoe = new Boss("Grolard",20,700)
