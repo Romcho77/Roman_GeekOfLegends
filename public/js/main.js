@@ -199,5 +199,11 @@ alert(`HP TOTAL ----> ${hpTotal}`)
 alert(`attackPoints ----> ${attackPoints}`)
 alert(`votre Mage --->  ${nomMage} ${combatPositionMage} ${hpMage} ${attackMage}`)
 
+/// Loop for the game
+let randomChoice = Math.floor(Math.random()* 3)
+let tabBoss = [grosFdp,Gouvernement,American]
+let randomBoss = tabBoss[randomChoice]
 
+while ( (warrior.hp <= 0 && archer.hp <= 0 && mage.hp <= 0) || randomBoss.hp <= 0){
 
+}
