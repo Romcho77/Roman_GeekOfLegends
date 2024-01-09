@@ -4,6 +4,13 @@ class Boss {
         this.attack = attack
         this.hp = hp
     }
+    attackType(hero){
+        if(hero.combatPosition == "defense"){
+            hero.hp -= this.attack / 2 
+        }else{
+            hero.hp -= this.attack
+        }
+    }
 }
 
 class Hero {
@@ -13,17 +20,9 @@ class Hero {
         this.attack = attack
         this.hp = hp
     }
-    combatStatement(){
-        if(this.combatPosition == "attack"){
-            this.attack = this.attack + this.attack*0.2
-            return 1
-        }else if(this.combatPosition == "defense"){
-            return 0.5
-        }else{
-            console.log("Je ne comprends pas dans quel posutre de combat ton heros est?");
-            return 0
-        }
-    }
+
+    
+
 }
 
 class Guerrier extends Hero{
@@ -36,17 +35,30 @@ class Guerrier extends Hero{
         this.ragePoint = 0
 
     }
+    attack(){
+        if(this.combatPosition == "attack"){
+
+            return this.attack + this.attack*0.2
+
+        }else if(this.combatPosition == "defense"){
+            return 0
+        }else{
+            console.log("Je ne comprends pas dans quel posutre de combat ton heros est?");
+            return -99
+        }
+    }
 
     combatStatement(){
-        if (this.ragePoint == 4) {
-            this.combatPosition = "attack"
-            this.attack = this.attack + this.attack*0.25
+        if (this.ragePoint == 4 ) {
+            // this.combatPosition = "attack"
+            // this.attack = this.attack + this.attack*0.25
             this.ragePoint = 0
-            return this.attack
+            return this.attack + this.attack*0.25
+
         }else{
             this.ragePoint +=1
-            this.attack = 0
-            this.combatPosition = "defense"
+            // this.attack = 0
+            // this.combatPosition = "defense"
             return 0
         }
     }
@@ -54,21 +66,22 @@ class Guerrier extends Hero{
 }
 
 class Mage extends Hero{
-    constructor(name,combatPosition,attack,hp,mp){
-        super(name,combatPosition,attack,hp,mp);
+    constructor(name,combatPosition,attack,hp){
+        super(name,combatPosition,attack,hp);
         // this.name = name
         // this.combatPosition = combatPosition
         // this.attack = attack
         // this.hp = hp
-        // this.manaPoint = mp
+        this.manaPoint = 7
         
     }
 
-    manaPossesion(){
-        if (this.manaPoint < 2) {
-            this.combatPosition = "defense"
-            this.manaPoint = 7
-        }else{
+    manaPossesion(boss){
+        if (this.manaPoint > 1 && this.combatPosition == "attack") {
+            boss.hp -= this.attack + this.attack * 0.2
+            this.manaPoint = this.manaPoint - 2
+
+        }else if (this.manaPoint < 2){
             this.combatPosition = "attack"
             this.manaPoint -= 2
         }
@@ -103,7 +116,7 @@ class Archer extends Hero{
     }
 }
 
-let grosFdp = new Boss("Grolard",20,700)
+let fatJoe = new Boss("Grolard",20,700)
 let Gouvernement = new Boss("Union Europeen", 55, 300)
 let American = new Boss("Uncle Sam",100,1000)
 
