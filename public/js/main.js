@@ -164,8 +164,8 @@ attackPoints -= attackWarrior
 
 
 console.log("il vous reste --> ", attackPoints, " points de attack");
-let warrior = new Guerrier(nomWarrior,combatPositionWarrior,attackWarrior,hpWarrior)
-console.log(`"votre guerrier ---> " ${warrior.name}  ${warrior.combatPosition}  ${warrior.attack}  ${warrior.hp} `)
+
+
 
 
 // input for Archer
@@ -189,9 +189,9 @@ while(attackArcher < 0 && attackArcher >119){
 }
 attackPoints -= attackArcher
 
-let archer = new Archer(nomArcher,combatPositionArcher,hpArcher,attackArcher)
 
-console.log(`votre archier --->  ${nomArcher} ${combatPositionArcher} ${hpArcher} ${attackArcher}`)
+
+
 
 // input for Mage
 let nomMage = prompt("Entrez un nom du Mage")
@@ -214,9 +214,64 @@ while(attackMage < 0 && attackMage >attackPoints){
 }
 attackPoints -= attackMage
 
-let mage = new Mage(nomMage,combatPositionMage,hpMage,attackMage)
+
 console.log(`HP TOTAL ----> ${hpTotal}`)
 console.log(`attackPoints ----> ${attackPoints}`)
+while(hpTotal != 0 ){
+    alert("VOUS DEVEZ bien disperser les points de vie");
+    hpTotal = 150
+    let hpWarrior = +prompt("Entrez les points de vie de votre warrior -->")
+    while(hpWarrior < 1 || hpWarrior >= hpTotal - 1){
+        hpWarrior = +prompt("Re entrez le nombre de HP (Doit etre plus grand que 1 et plus petit que 149)")
+
+    }
+    hpTotal -= hpWarrior
+
+    let hpArcher = +prompt("Entrez les points de vie de Archer -->")
+    while(hpArcher < 1 && hpArcher > hpTotal ){
+        hpArcher = +prompt("Re entrez le nombre de HP (Doit etre plus grand que 1 et plus petit que 149)")
+
+    }
+    hpTotal -=  hpArcher
+    let hpMage = +prompt("Entrez les points de vie de Mage  -->")
+    while(hpMage < 1 && hpMage > hpTotal ){
+        hpMage = +prompt("Re entrez le nombre de HP (Doit etre plus grand que 1 et plus petit que 149)")
+
+    }
+    hpTotal -=  hpMage
+}
+
+
+while(attackPoints != 0){
+    alert("VOUS DEVEZ bien disperser les points de attack");
+    attackPoints = 120
+    let attackWarrior = +prompt("Entrez les points de attaque de votre warrior --> ")
+        while(attackWarrior < 0 && attackWarrior > attackPoints - 1){
+            attackWarrior = +prompt("Re entrez le nombre de HP (Doit etre plus grand ou egal que 0 et plus petit que 119)")
+
+        }
+    attackPoints -= attackWarrior 
+
+    let attackArcher = +prompt("Entrez les points de attaque de Archer  -->")
+        while(attackArcher < 0 && attackArcher >119){
+            attackArcher = +prompt("Re entrez le nombre de HP (Doit etre plus grand ou egal que 0 et plus petit que 119)")
+        
+        }
+    attackPoints -= attackArcher
+
+    let attackMage = +prompt("Entrez les points de attaque de Mage -->")
+    while(attackMage < 0 && attackMage >attackPoints){
+        attackMage = +prompt("Re entrez le nombre de HP (Doit etre plus grand ou egal que 0 et plus petit que 119)")
+
+    }
+    attackPoints -= attackMage
+
+}
+let mage = new Mage(nomMage,combatPositionMage,hpMage,attackMage)
+let archer = new Archer(nomArcher,combatPositionArcher,hpArcher,attackArcher)
+let warrior = new Guerrier(nomWarrior,combatPositionWarrior,attackWarrior,hpWarrior)
+console.log(`"votre guerrier ---> " ${warrior.name}  ${warrior.combatPosition}  ${warrior.attack}  ${warrior.hp} `)
+console.log(`votre archier --->  ${nomArcher} ${combatPositionArcher} ${hpArcher} ${attackArcher}`)
 console.log(`votre Mage --->  ${nomMage} ${combatPositionMage} ${hpMage} ${attackMage}`)
 
 /// Loop for the game
@@ -226,6 +281,7 @@ let randomBoss = tabBoss[randomChoice]
 let heroTab = [warrior,mage,archer]
 
 while ( (warrior.hp > 0 && archer.hp > 0 && mage.hp > 0) && randomBoss.hp > 0){
+    
 
     //!__________________ DEBUT DU COMBAT_________________ //!
 
@@ -291,11 +347,14 @@ while ( (warrior.hp > 0 && archer.hp > 0 && mage.hp > 0) && randomBoss.hp > 0){
             break;
     }
 
+
+    
+
     if(randomBoss.hp <=0){
         console.log("t'as gagner");
         break;
     }else{
-    
+        alert("Nouveau Tour")
         if(warrior.hp > 0){
             combatPositionWarrior = prompt("Entrez posture de combat de warrior")
             while (combatPositionWarrior != "attack" && combatPositionWarrior != "defense") {
@@ -324,3 +383,4 @@ while ( (warrior.hp > 0 && archer.hp > 0 && mage.hp > 0) && randomBoss.hp > 0){
 
     ///fin de boucle
 }
+console.log("t'as gagner felicitations !!!!!!");
