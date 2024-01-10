@@ -347,8 +347,22 @@ while ( (warrior.hp > 0 && archer.hp > 0 && mage.hp > 0) && randomBoss.hp > 0){
             break;
     }
 
+// une variation de l'enigme
+    if (randomBoss.hp <=  ((randomBoss.pv * 20)/100)) {
+        let enigme = prompt(`il reste 20% de vie au Boss pour le vaincre il va faloir resoudre une enigme. c'est quoi une cagoule?`)
+        let i = 3
+        while(i>0){
+            enigme = prompt(`mets ta reponse c'est pour faire quoi`)
+            if (enigme == "voler") {
+                console.log(`Vous avez reussi l'enigme le boss est mort`);
+            }else {
+                console.log(`Vous avez rater l'enigme le boss est toujour en vie`);
+            }
+            i--
+            console.log("ressaye");
+        }
+        console.log("tas perdu");
 
-    
 
     if(randomBoss.hp <=0){
         console.log("t'as gagner");
