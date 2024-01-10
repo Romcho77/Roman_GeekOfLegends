@@ -362,7 +362,7 @@ while ( (warrior.hp > 0 && archer.hp > 0 && mage.hp > 0) && randomBoss.hp > 0){
             console.log("ressaye");
         }
         console.log("tas perdu");
-
+    }
 
     if(randomBoss.hp <=0){
         console.log("t'as gagner");
@@ -393,8 +393,9 @@ while ( (warrior.hp > 0 && archer.hp > 0 && mage.hp > 0) && randomBoss.hp > 0){
     alert("fin boucle")
     
 
-
+    
 
     ///fin de boucle
 }
-console.log("t'as gagner felicitations !!!!!!");
+
+console.log("t'as gagner felicitations !!!!!!")
