@@ -1,132 +1,5 @@
-class Boss {
-    constructor(name,attack,hp){
-        this.name = name
-        this.attack = attack
-        this.hp = hp
-    }
-    attackType(hero){
-        if(hero.combatPosition == "defense"){
-            hero.hp -= this.attack / 2 
-        }else{
-            hero.hp -= this.attack
-        }
-    }
-}
-
-class Hero {
-    constructor(name,combatPosition,attack,hp){
-        this.name = name
-        this.combatPosition = combatPosition
-        this.attack = attack
-        this.hp = hp
-    }
-
-    
-
-}
-
-class Guerrier extends Hero{
-    constructor(name,combatPosition,attack,hp){
-        super(name,combatPosition,attack,hp);
-        // this.name = name
-        // this.combatPosition = combatPosition
-        // this.attack = attack
-        // this.hp = hp
-        this.ragePoint = 0
-
-    }
-    // attack(){
-    //     if(this.combatPosition == "attack"){
-
-    //         return (this.attack + this.attack*0.2) 
-
-    //     }else if(this.combatPosition == "defense"){
-    //         return 0
-    //     }else{
-    //         console.log("Je ne comprends pas dans quel posutre de combat ton heros est?");
-    //         return -99
-    //     }
-    // }
-
-    rage(boss){
-
-        if (this.ragePoint == 4 ) {
-            // this.combatPosition = "attack"
-            // this.attack = this.attack + this.attack*0.25
-            let attackNormal = this.attack + this.attack * 0.2
-            boss.hp = boss.hp - ((attackNormal + attackNormal*0.25))
-            this.ragePoint = 0
-             
-
-        }else if (this.combatPosition == "attack"){
-            boss.hp-= this.attack + this.attack * 0.2
-
-            this.ragePoint+=1
-        }else{
-            this.ragePoint +=1
-            // this.attack = 0
-            // this.combatPosition = "defense"
-
-        }
-    }
-
-}
-
-class Mage extends Hero{
-    constructor(name,combatPosition,attack,hp){
-        super(name,combatPosition,attack,hp);
-        // this.name = name
-        // this.combatPosition = combatPosition
-        // this.attack = attack
-        // this.hp = hp
-        this.manaPoint = 7
-        
-    }
-
-    manaPossesion(boss){
-        if (this.manaPoint > 1 && this.combatPosition == "attack") {
-
-            boss.hp -= this.attack + this.attack * 0.2
-            this.manaPoint = this.manaPoint - 2
-
-        }else if (this.manaPoint < 2){
-            
-            this.manaPoint += 7
-        }
-    }
-}
-
-class Archer extends Hero{
-    constructor(name,combatPosition,attack,hp){
-        super(name,combatPosition,attack,hp);
-        // this.name = name
-        // this.combatPosition = combatPosition
-        // this.attack = attack
-        // this.hp = hp
-        this.arrows = 6
-    }
-
-
-    arrowPossesion(boss){
-        if(this.arrows < 2){
-            
-            this.arrows += 6
-            
-        }else if (this.arrows >= 2 && this.attack == "attack"){
-
-            boss.hp-= this.attack + this.attack * 0.2
-            this.arrows -= 2
-
-        }
-    }
-
-
-}
-
-let fatJoe = new Boss("Grolard",20,700)
-let Gouvernement = new Boss("Union Europeen", 55, 300)
-let American = new Boss("Uncle Sam",100,1000)
-
+import * as CLASSES from "./classes.js"
+import * as INSTANCES from "./instances.js"
 console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 console.log("$$$$$$$$$ Create Your Heroes $$$$$$$$$$$$$");
 console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
@@ -136,11 +9,7 @@ let hpTotal = 150
 // 120 attackPoints for 3 heroes
 let attackPoints = 120
 
-// for(let i = 0; i < 3; i++){
-
-// }
-
-// Input for warrior
+// Input for warrior Robuste
 let nomWarrior = prompt("Entrez un nom du premier personnage")
 let combatPositionWarrior = prompt("Entrez son posture de combat")
 while (combatPositionWarrior != "attack" && combatPositionWarrior != "defense") {
@@ -163,12 +32,9 @@ while(attackWarrior < 0 && attackWarrior > attackPoints - 1){
 attackPoints -= attackWarrior 
 
 
-console.log("il vous reste --> ", attackPoints, " points de attack");
+console.log("il vous reste --> "+ attackPoints+ " points de attack");
 
-
-
-
-// input for Archer
+// input for Archer Robuste
 let nomArcher = prompt("Entrez un nom du Archer")
 let combatPositionArcher = prompt("Entrez son posture de combat")
 while (combatPositionArcher != "attack" && combatPositionArcher != "defense") {
@@ -193,7 +59,7 @@ attackPoints -= attackArcher
 
 
 
-// input for Mage
+// input for Mage Robuste
 let nomMage = prompt("Entrez un nom du Mage")
 let combatPositionMage = prompt("Entrez son posture de combat")
 while (combatPositionMage != "attack" && combatPositionMage != "defense") {
@@ -215,19 +81,20 @@ while(attackMage < 0 && attackMage >attackPoints){
 attackPoints -= attackMage
 
 
-console.log(`HP TOTAL ----> ${hpTotal}`)
-console.log(`attackPoints ----> ${attackPoints}`)
+alert(`il reste HP TOTAL ----> ${hpTotal}`)
+alert(`il reste attackPointsTotal ----> ${attackPoints}`)
+// si t'as mal dispercer les hp et les points d'attques  faut recommencez
 while(hpTotal != 0 ){
-    alert("VOUS DEVEZ bien disperser les points de vie");
+    alert("VOUS DEVEZ bien disperser les points de vie", hpTotal);
     hpTotal = 150
-    let hpWarrior = +prompt("Entrez les points de vie de votre warrior -->")
+    hpWarrior = +prompt("Entrez les points de vie de votre warrior -->")
     while(hpWarrior < 1 || hpWarrior >= hpTotal - 1){
         hpWarrior = +prompt("Re entrez le nombre de HP (Doit etre plus grand que 1 et plus petit que 149)")
 
     }
     hpTotal -= hpWarrior
 
-    let hpArcher = +prompt("Entrez les points de vie de Archer -->")
+    hpArcher = +prompt("Entrez les points de vie de Archer -->")
     while(hpArcher < 1 && hpArcher > hpTotal ){
         hpArcher = +prompt("Re entrez le nombre de HP (Doit etre plus grand que 1 et plus petit que 149)")
 
@@ -245,21 +112,21 @@ while(hpTotal != 0 ){
 while(attackPoints != 0){
     alert("VOUS DEVEZ bien disperser les points de attack");
     attackPoints = 120
-    let attackWarrior = +prompt("Entrez les points de attaque de votre warrior --> ")
+        attackWarrior = +prompt("Entrez les points de attaque de votre warrior --> ")
         while(attackWarrior < 0 && attackWarrior > attackPoints - 1){
             attackWarrior = +prompt("Re entrez le nombre de HP (Doit etre plus grand ou egal que 0 et plus petit que 119)")
 
         }
     attackPoints -= attackWarrior 
 
-    let attackArcher = +prompt("Entrez les points de attaque de Archer  -->")
+    attackArcher = +prompt("Entrez les points de attaque de Archer  -->")
         while(attackArcher < 0 && attackArcher >119){
             attackArcher = +prompt("Re entrez le nombre de HP (Doit etre plus grand ou egal que 0 et plus petit que 119)")
         
         }
     attackPoints -= attackArcher
 
-    let attackMage = +prompt("Entrez les points de attaque de Mage -->")
+    attackMage = +prompt("Entrez les points de attaque de Mage -->")
     while(attackMage < 0 && attackMage >attackPoints){
         attackMage = +prompt("Re entrez le nombre de HP (Doit etre plus grand ou egal que 0 et plus petit que 119)")
 
@@ -267,16 +134,19 @@ while(attackPoints != 0){
     attackPoints -= attackMage
 
 }
-let mage = new Mage(nomMage,combatPositionMage,hpMage,attackMage)
-let archer = new Archer(nomArcher,combatPositionArcher,hpArcher,attackArcher)
-let warrior = new Guerrier(nomWarrior,combatPositionWarrior,attackWarrior,hpWarrior)
-console.log(`"votre guerrier ---> " ${warrior.name}  ${warrior.combatPosition}  ${warrior.attack}  ${warrior.hp} `)
-console.log(`votre archier --->  ${nomArcher} ${combatPositionArcher} ${hpArcher} ${attackArcher}`)
-console.log(`votre Mage --->  ${nomMage} ${combatPositionMage} ${hpMage} ${attackMage}`)
+
+// instances for Heroes
+let mage = new  CLASSES.Mage(nomMage,combatPositionMage,hpMage,attackMage)
+let archer = new CLASSES.Archer(nomArcher,combatPositionArcher,hpArcher,attackArcher)
+let warrior = new CLASSES.Guerrier(nomWarrior,combatPositionWarrior,attackWarrior,hpWarrior)
+alert(`"votre guerrier ---> " ${warrior.name}  ${warrior.combatPosition}  ${warrior.attack}  ${warrior.hp} `)
+alert(`votre archier --->  ${archer.name} ${archer.combatPosition} ${archer.hp} ${archer.attack}`)
+alert(`votre Mage --->  ${mage.name} ${mage.combatPosition} ${mage.hp} ${mage.attack}`)
+
 
 /// Loop for the game
 let randomChoice = Math.floor(Math.random()* 3)
-let tabBoss = [fatJoe,Gouvernement,American]
+let tabBoss = [INSTANCES.fatJoe,INSTANCES.Gouvernement,INSTANCES.American]
 let randomBoss = tabBoss[randomChoice]
 let heroTab = [warrior,mage,archer]
 
@@ -289,15 +159,16 @@ while ( (warrior.hp > 0 && archer.hp > 0 && mage.hp > 0) && randomBoss.hp > 0){
     if(warrior.hp <= 0 && (heroTab.includes(warrior))){
         heroTab.splice(0,1)
         warrior.attack = 0
-        console.log("warrior enlever");
+        alert("warrior est MORRRRTTT");
         
     }else{
         //1. Le Guerrier attaque
         warrior.rage(randomBoss)
-        console.log("warrior attaque");
+        alert("warrior attaque");
     }
+
     if(randomBoss.hp <=0){
-        console.log(randomBoss.hp,"tas gagner");
+        alert(randomBoss.hp,"tas gagner");
         break;
     }
 
@@ -308,7 +179,7 @@ while ( (warrior.hp > 0 && archer.hp > 0 && mage.hp > 0) && randomBoss.hp > 0){
         archer.arrowPossesion(randomBoss)
     }
     if(randomBoss.hp <=0){
-        console.log(randomBoss.hp,"tas gagner");
+        console.log("Les vies de boss -->",randomBoss.hp,"tas gagner");
         break;
     }
 
@@ -337,13 +208,17 @@ while ( (warrior.hp > 0 && archer.hp > 0 && mage.hp > 0) && randomBoss.hp > 0){
     switch (Math.floor(Math.random()* heroTab.length)) {
         case 0:
             randomBoss.attackType(warrior)
+            alert("Warrior was attacked by the BOSS")
             break;
         case 1:
             randomBoss.attackType(mage)
+            alert("Mage was attacked by the BOSS")
             break
         case 2: 
             randomBoss.attackType(archer)
+            alert("Archer was attacked by the BOSS")
         default:
+            alert("Nobody was attacked by the BOSS")
             break;
     }
 
@@ -390,12 +265,6 @@ while ( (warrior.hp > 0 && archer.hp > 0 && mage.hp > 0) && randomBoss.hp > 0){
         alert("fin demande")
     }
 
-    alert("fin boucle")
-    
-
-    
-
-    ///fin de boucle
 }
 
 console.log("t'as gagner felicitations !!!!!!")
